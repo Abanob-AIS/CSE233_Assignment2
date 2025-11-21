@@ -2,33 +2,33 @@
 # Student: Abanob Yousry Fahmy
 # ID: 23101861
 
+
 CC = gcc
 CFLAGS = -Wall -Wextra -g
 
-# هنا بنحدد أسماء البرامج النهائية اللي هتطلع
-all: process_creation background_sleep linked_program simple_program
+SRC = src
+BUILD = build
 
-process_creation: process_creation.c
-	$(CC) $(CFLAGS) -o process_creation process_creation.c
+all: $(BUILD)/process_creation $(BUILD)/background_sleep $(BUILD)/linked_program $(BUILD)/simple_program
 
+# 1. Process Creation
+$(BUILD)/process_creation: $(SRC)/process_creation.c
+	$(CC) $(CFLAGS) -o $(BUILD)/process_creation $(SRC)/process_creation.c
 
-background_sleep: background_sleep.c
-	$(CC) $(CFLAGS) -o background_sleep background_sleep.c
-linked_program: file1.o file2.o
-	$(CC) -o linked_program file1.o file2.o
+# 2. Background Sleep
+$(BUILD)/background_sleep: $(SRC)/background_sleep.c
+	$(CC) $(CFLAGS) -o $(BUILD)/background_sleep $(SRC)/background_sleep.c
 
-file1.o: file1.c
-	$(CC) $(CFLAGS) -c file1.c
+# 3. Linked Program (files 1 & 2)
+$(BUILD)/linked_program: $(SRC)/file1.c $(SRC)/file2.c
+	$(CC) -o $(BUILD)/linked_program $(SRC)/file1.c $(SRC)/file2.c
 
-file2.o: file2.c
-	$(CC) $(CFLAGS) -c file2.c
+# 4. Loader Demo
+$(BUILD)/simple_program: $(SRC)/simple_program.c
+	$(CC) $(CFLAGS) -o $(BUILD)/simple_program $(SRC)/simple_program.c
 
-
-simple_program: simple_program.c
-	$(CC) $(CFLAGS) -o simple_program simple_program.c
-
-
+# Clean
 clean:
-	rm -f *.o process_creation background_sleep linked_program simple_program
+	rm -f $(BUILD)/*
 
 .PHONY: all clean
