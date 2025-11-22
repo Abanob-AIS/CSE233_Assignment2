@@ -94,6 +94,12 @@ sudo apt update
 sudo apt install gcc make
 make
 ./build/process_creation
+
+sleep 30 &
+jobs
+ps aux | grep sleep
+kill <PID>
+
 ./build/background_sleep
 ./build/linked_program
 ./build/simple_program
