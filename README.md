@@ -63,6 +63,25 @@ CSE233_Assignment2/
 - Make utility
 
 ---
+## Usage
+
+Run the compiled programs from the `build/` directory:
+
+```bash
+# 1. Process creation demo
+./build/process_creation
+
+# 2. Background sleep demo
+./build/background_sleep
+
+# 3. Linked program demo
+./build/linked_program
+
+# 4. Simple program / loader demo
+./build/simple_program
+
+
+
 
 ## Installation
 Clone the repository:
@@ -78,3 +97,6 @@ make
 ./build/background_sleep
 ./build/linked_program
 ./build/simple_program
+
+
+
